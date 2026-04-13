@@ -1,34 +1,113 @@
-# terraform-eks
-A sample repository to create EKS on AWS using Terraform.
+# 🚀 AWS EKS Cluster Provisioning using Terraform
 
-### Install AWS CLI 
+## 📌 Overview
 
-As the first step, you need to install AWS CLI as we will use the AWS CLI (`aws configure`) command to connect Terraform with AWS in the next steps.
+This project demonstrates how I provisioned a production-ready Amazon EKS cluster using Terraform, including networking, IAM roles, and managed node groups.
 
-Follow the below link to Install AWS CLI.
+Unlike basic tutorials, this setup includes debugging real-world issues and applying proper DevOps workflows.
+
+---
+
+## 🛠️ Tech Stack
+
+* Terraform
+* AWS EKS
+* VPC
+* IAM
+* Kubernetes
+
+---
+
+## ⚙️ Features
+
+* Custom VPC with public & private subnets
+* NAT Gateway for private networking
+* Managed EKS cluster (Kubernetes 1.29)
+* Node group with autoscaling
+* IRSA enabled (OIDC provider)
+* Secure networking with security groups
+
+---
+
+## 🚀 Deployment Steps
+
+### 1. Configure AWS
+
+```bash
+aws configure
 ```
-https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+---
+
+### 2. Initialize Terraform
+
+```bash
+terraform init
 ```
 
-### Install Terraform
+---
 
-Next, Install Terraform using the below link.
+### 3. Plan Infrastructure
+
+```bash
+terraform plan
 ```
-https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+---
+
+### 4. Apply Configuration
+
+```bash
+terraform apply
 ```
 
-### Connect Terraform with AWS
+---
 
-Its very easy to connect Terraform with AWS. Run `aws configure` command and provide the AWS Security credentials as shown in the video.
+## 🔗 Connect to Cluster
 
-### Initialize Terraform
+```bash
+aws eks update-kubeconfig --name <cluster-name> --region us-west-2
+kubectl get nodes
+```
 
-Clone the repository and Run `terraform init`. This will intialize the terraform environment for you and download the modules, providers and other configuration required.
+---
 
-### Optionally review the terraform configuration
+## ⚠️ Challenges & Fixes
 
-Run `terraform plan` to see the configuration it creates when executed.
+### ❌ Unsupported Kubernetes Version
 
-### Finally, Apply terraform configuation to create EKS cluster with VPC 
+* Issue: EKS rejected version 1.27
+* Fix: Updated to 1.29
 
-`terraform apply`
+### ❌ Provider Compatibility Issue
+
+* Issue: Unsupported block errors
+* Fix: Aligned AWS provider with module version
+
+### ❌ Git Hygiene Issues
+
+* Removed `.terraform.lock.hcl`
+* Prevented `.tfstate` from being committed
+
+---
+
+## 📊 Result
+
+* EKS cluster successfully provisioned
+* Nodes running and accessible
+* Clean Git workflow implemented
+
+---
+
+## 🚀 Future Improvements
+
+* Remote backend (S3 + DynamoDB)
+* CI/CD pipeline (GitHub Actions)
+* Deploy applications to EKS
+* ALB Ingress Controller setup
+
+---
+
+## 👤 Author
+
+Bharath Ranganathan
