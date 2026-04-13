@@ -1,6 +1,6 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 1.5.0"
   required_providers {
     random = {
       source  = "hashicorp/random"
@@ -12,7 +12,7 @@ terraform {
     }
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.68.0"
+      version = "~> 5.40"
     }
     local = {
       source  = "hashicorp/local"
